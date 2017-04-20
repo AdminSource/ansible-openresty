@@ -1,0 +1,52 @@
+---
+- name: load build requirements
+  include_vars: '{{ansible_os_family}}.yml'
+
+- name: update package cache
+  when: ansible_os_family == "Debian"
+  apt:
+    update_cache: yes
+    cache_valid_time: 86400
+  
+- name: install build requirements
+  with_items: '{{build_requirements}}'
+  package:
+    name: '{{item}}'
+    state: present
+
+- name: download source
+  get_url:
+    url: '{{openresty_source}}'
+    dest: '{{openresty_source_file}}'
+    mode: 0644
+    timeout: 60
+
+- name: expand source
+  unarchive:
+    dest: '{{openresty_build_expand_dir}}'
+    src: '{{openresty_source_file}}'
+
+- name: configure source
+  command: >-
+    ./configure
+    --prefix={{openresty_build_prefix}}
+    {% for item in openresty_build_config %}
+      {{item}}
+    {% endfor %}
+  args:
+    chdir: '{{openresty_build_dir}}'
+    
+
+- name: build
+
+- name: install
+
+- name: create group
+
+- name: create user
+
+- name: set permissions
+
+- name: init script
+
+- name: 

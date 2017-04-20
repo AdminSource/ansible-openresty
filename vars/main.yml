@@ -1,0 +1,3 @@
+---
+openresty_build_config:
+  - '--prefix={{openresty_build_prefix}}'

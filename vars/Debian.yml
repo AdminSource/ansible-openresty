@@ -1,0 +1,7 @@
+---
+build_requirements:
+  - make
+  - gcc
+  - build-essential
+  - libssl-dev
+...

@@ -1,0 +1,25 @@
+---
+# General Options
+openresty_version: '1.11.2.2'
+
+# Build Options
+openresty_source: 'https://github.com/openresty/openresty/releases/download/v{{openresty_version}}/openresty-{{openresty_version}}.tar.gz'
+openresty_source_file: '/tmp/openresty-{{openresty_version}}.tar.gz'
+openresty_build_expand_dir: /usr/local/src
+openresty_build_dir: '{{openresty_build_expand_dir}}/openresty-{{openresty_version}}'
+openresty_build_prefix: /usr/local
+
+openresty_build_ipv6: yes
+openresty_build_lua_jit: yes
+openresty_build_pcre_jit: yes
+openresty_build_lua_jobs: '{{ansible_processor_vcpus}}'
+
+# HTTP modules
+openresty_build_http_iconv_mod: yes
+openresty_build_http_geoip_mod: yes
+openresty_build_http_postgres_mod: yes
+openresty_build_http_redis2_mod: no
+openresty_build_http_v2_mod: yes
+openresty_build_http_realip_mod: yes
+openresty_build_http_auth_request_mod: yes
+
